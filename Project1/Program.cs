@@ -17,7 +17,12 @@ namespace Project1
             Currency Cur1 = new Currency(3444, "Hrivnia");
             Cur1.Print();
 
-            Cur1.Read("currencies.txt");
+            List<Currency> CurrencyList = new List<Currency>();
+            CurrencyList = Cur1.Read("currencies.txt");
+            foreach (var c in CurrencyList)
+            {
+                c.Print();
+            }
 
 
             Console.ReadKey();

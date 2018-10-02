@@ -8,18 +8,20 @@ using System.IO;
 namespace Project1
 {
     public enum Koef {DOL, UAH,EUR }
-    public interface IRead {
-        void Read(string name);
+    public interface IRead
+    {
+        List<Currency>Read(string name);
     }
-    public class Currency:IRead
+
+    public class Currency: IRead
     {
         public int Ammount { get; set; }
-        public string CurrencyName { get; set; }
-       public  List<Currency> CurrencyList = new List<Currency>();
+        public string CurrencyName { get; set; }        
+
         public Currency()
         {
-            this.Ammount = 10;
-            this.CurrencyName = "dolar";
+            this.Ammount = 0;
+            this.CurrencyName = "name";
         }
 
         public Currency(int ammnt, string cur_name)
@@ -38,40 +40,40 @@ namespace Project1
         {
             
         }
+
         public override string ToString()
         {
             return String.Format("Currency: \nAmmount: {0}\nName:    {1}\n",
                 this.Ammount, this.CurrencyName);
         }
-        public void Read(string name)
+
+        public List<Currency> Read(string name)
         {
            
-            using (StreamReader str = new StreamReader(name,
-                                    Encoding.Default))
+            using (StreamReader str = new StreamReader(name, Encoding.Default))
             {
+                List<Currency> CurrencyList = new List<Currency>();
                 while (!str.EndOfStream)
                 {
                     string current_currency = str.ReadLine();
                     CurrencyList.Add(new Currency(int.Parse(current_currency.Split(new char[] { ' ' })[0]),
                                         current_currency.Split(new char[] { ' ' })[1]));
                 }
-                foreach (var c in CurrencyList)
-                {
-                    if(c.CurrencyName=="hrivnia")
-                    Console.WriteLine(c);
-                }
+
+                return CurrencyList;
+              
             }
         }
+
         public void ConvertToDictionary()
         {
-            Dictionary<string, int> d = new Dictionary<string, int>();
+             List<Currency> CurrencyList = new List<Currency>();
+             Dictionary<string, int> dict = new Dictionary<string, int>();
 
-            for (int i = 0; i < CurrencyList.Count; i++)
-            {
-
-
-                d.Add(CurrencyList[i].CurrencyName,CurrencyList[i].Ammount);
-            }
+             for (int i = 0; i < CurrencyList.Count; i++)
+             {
+                 dict.Add(CurrencyList[i].CurrencyName,CurrencyList[i].Ammount);
+             }
         }
     }
 }
