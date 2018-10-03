@@ -70,6 +70,7 @@ namespace Project1
                                         current_currency.Split(new char[] { ' ' })[1]));
                 }
 
+                ///< returns nm = "CurrencyList" >Повертає список з прочитаними з файлу елементами</returns>
                 return CurrencyList;
               
             }
