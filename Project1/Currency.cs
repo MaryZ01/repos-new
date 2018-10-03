@@ -7,7 +7,11 @@ using System.IO;
 
 namespace Project1
 {
+
     public enum Koef {DOL, UAH,EUR }
+    /// <summary>  
+    ///  Інтерфейс з методом Read(), котрий зчитує дані з файлу.  
+    /// </summary>  
     public interface IRead
     {
         List<Currency>Read(string name);
@@ -15,6 +19,8 @@ namespace Project1
 
     public class Currency: IRead
     {
+        ///<value am = "Ammount">Сума</value>
+        ///<value cn = "CurrencyName">Назва валюти</value>
         public int Ammount { get; set; }
         public string CurrencyName { get; set; }        
 
