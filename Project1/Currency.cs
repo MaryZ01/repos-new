@@ -10,7 +10,7 @@ namespace Project1
 
     public enum Koef {DOL, UAH,EUR }
     /// <summary>  
-    ///  Інтерфейс з методом Read(), котрий зчитує дані з файлу.  
+    /// Interface which realises method Read(), which read data feom the file.  
     /// </summary>  
     public interface IRead
     {
@@ -46,10 +46,49 @@ namespace Project1
             Console.WriteLine();
         }
 
-        public void ConvertTo(string val)
-        {
-            
-        }
+        //public void ConvertTo(string name)
+        //{
+        //    String newName = name.ToUpper();
+        //    if (name == "USD")
+        //    {
+        //        if (CurrencyName == "EUR")
+        //        {
+        //            this.val *= 1.15;
+        //            this.CurrencyName = "USD";
+        //        }
+        //        else if (CurrencyName == "UAH")
+        //        {
+        //            this.val *= 0.028;
+        //            this.CurrencyName = "USD";
+        //        }
+        //    }
+        //    else if (name == "UAH")
+        //    {
+        //        if (CurrencyName == "EUR")
+        //        {
+        //            this.val *= 30;
+        //            this.CurrencyName = "UAH";
+        //        }
+        //        else if (CurrencyName == "USD")
+        //        {
+        //            this.val *= 28;
+        //            this.CurrencyName = "UAH";
+        //        }
+        //    }
+        //    else if (name == "EUR")
+        //    {
+        //        if (CurrencyName == "USD")
+        //        {
+        //            this.val *= 0.85;
+        //            this.CurrencyName = "EUR";
+        //        }
+        //        else if (CurrencyName == "UAH")
+        //        {
+        //            this.val *= 0.03;
+        //            this.CurrencyName = "EUR";
+        //        }
+        //    }
+        //}
 
         public override string ToString()
         {
