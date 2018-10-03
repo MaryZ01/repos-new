@@ -17,6 +17,9 @@ namespace Project1
         List<Currency>Read(string name);
     }
 
+    /// <summary>  
+    ///  Клас описує сутність Currency що представляє собою 
+    /// </summary> 
     public class Currency: IRead
     {
         ///<value am = "Ammount">Сума</value>
@@ -42,6 +45,7 @@ namespace Project1
             Console.WriteLine("Ammount:       {0}", this.Ammount);
             Console.WriteLine();
         }
+
         public void ConvertTo(string val)
         {
             
