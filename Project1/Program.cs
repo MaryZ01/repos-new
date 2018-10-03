@@ -14,7 +14,7 @@ namespace Project1
 
         static void Main(string[] args)
         {
-            Currency Cur1 = new Currency(3444, "Hrivnia");
+            Currency Cur1 = new Currency(3444, currency.UAH);
             Cur1.Print();
 
             List<Currency> CurrencyList = new List<Currency>();
