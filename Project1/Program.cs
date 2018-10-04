@@ -14,14 +14,14 @@ namespace Project1
 
         static void Main(string[] args)
         {
-            
+            Currency Cur1 = new Currency(100, currency.USD);
 
-            //List<Currency> CurrencyList = new List<Currency>();
-            //CurrencyList = Cur1.Read("currencies.txt");
-            //foreach (var c in CurrencyList)
-            //{
-            //    c.Print();
-            //}
+            List<Currency> CurrencyList = new List<Currency>();
+            Cur1.Read("currencies.txt", CurrencyList);
+            foreach (var c in CurrencyList)
+            {
+                c.Print();
+            }
 
 
             Console.ReadKey();

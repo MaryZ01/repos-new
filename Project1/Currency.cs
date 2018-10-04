@@ -13,7 +13,7 @@ namespace Project1
     /// </summary>  
     public interface IRead
     {
-        List<Currency> Read(string name);
+        bool Read(string name, List<Currency> currency_list);                   //?? is_write
     }
 
     //Для перетворення enum в string
@@ -115,28 +115,34 @@ namespace Project1
                 this.Ammount, this.CurrencyName);
         }
 
-        public List<Currency> Read(string name)
+        public bool Read(string name, List<Currency> currency_list)
         {
-
-            using (StreamReader str = new StreamReader((string)name, Encoding.Default))
+            try
             {
-                List<Currency> CurrencyList = new List<Currency>();
-                while (!str.EndOfStream)
+                using (StreamReader str = new StreamReader((string)name, Encoding.Default))
                 {
-                    //string ValueOfCurrency = StringEnum.GetStringValue(currency.EUR);
+                    while (!str.EndOfStream)
+                    {
+                        string current_currency = str.ReadLine();
+                        currency_list.Add(new Currency(double.Parse(current_currency.Split(new char[] { ' ' })[0]),
+                           (currency)Enum.Parse(typeof(currency), current_currency.Split(new char[] { ' ' })[1])));
+                    }
 
-                    string current_currency = str.ReadLine();
-                    CurrencyList.Add(new Currency(double.Parse(current_currency.Split(new char[] { ' ' })[0]),
-
-                       (currency)Enum.Parse(typeof(currency), current_currency.Split(new char[] { ' ' })[1])));
-
-
+                    ///< returns nm = "CurrencyList" >Повертає список з прочитаними з файлу елементами</returns>
+                    return true;
                 }
-
-                ///< returns nm = "CurrencyList" >Повертає список з прочитаними з файлу елементами</returns>
-                return CurrencyList;
-
             }
+            catch(Exception ex)
+            {
+                string mess_ = string.Format("Unpredictable error: {0}\n", ex.Message);
+                Console.WriteLine(mess_);
+                return false;
+            }
+            finally
+            {
+                Console.WriteLine("Reading the file finished.\n");
+            }
+            
         }
 
         //public void ConvertToDictionary()
