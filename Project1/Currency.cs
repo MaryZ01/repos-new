@@ -16,22 +16,73 @@ namespace Project1
         List<Currency> Read(string name);
     }
 
+    //Для перетворення enum в string
+    //Створюєм атрибут під назвою "StringValue", який можна налаштовувати
+    public class StringValue : System.Attribute
+    {
+        private readonly string _value;
+
+        public StringValue(string value)
+        {
+            _value = value;
+        }
+
+        public string Value
+        {
+            get { return _value; }
+        }
+
+    }
+
+    //Добавляємо атрибут "StringValue" в enum
     public enum currency
     {
+        [StringValue("USD")]
         USD = 1,
+        [StringValue("UAH")]
         UAH = 2,
+        [StringValue("EUR")]
         EUR = 3,
+        [StringValue("JPY")]
         JPY = 4
+    }
+
+    //клас з допомогою якого ми зможемо отримувати що потрібно
+    public static class StringEnum
+    {
+        public static string GetStringValue(Enum value)
+        {
+            string output = null;
+            Type type = value.GetType();
+
+            //Check first in our cached results...
+
+            //Look for our 'StringValueAttribute' 
+
+            //in the field custom attributes
+
+
+            FieldInfo fi = type.GetField(value.ToString());
+            StringValue[] attrs =
+               fi.GetCustomAttributes(typeof(StringValue),
+                                       false) as StringValue[];
+            if (attrs.Length > 0)
+            {
+                output = attrs[0].Value;
+            }
+
+            return output;
+        }
     }
 
     /// <summary>  
     ///  Клас описує сутність Currency що представляє собою 
     /// </summary> 
-    public class Currency//: IRead
+    public class Currency : IRead
     {
         ///<value am = "Ammount">Сума</value>
         ///<value cn = "CurrencyName">Назва валюти</value>
-        public int Ammount { get; set; }
+        public double Ammount { get; set; }
         public currency CurrencyName { get; set; }
 
         public Currency()
@@ -44,9 +95,8 @@ namespace Project1
         /// Initializes a new instance of the <see cref="T:Project1"/> class with specified ammnt, cur_name
         /// </summary>
         /// <param name="ammnt"></param>
-        /// <param name="cur_name"></param>
-
-        public Currency(int ammnt, currency cur_name)
+        /// <param name="cur_name"></param> 
+        public Currency(double ammnt, currency cur_name)
         {
             this.Ammount = ammnt;
             this.CurrencyName = cur_name;
@@ -57,8 +107,7 @@ namespace Project1
             Console.WriteLine("Currency name: {0}", this.CurrencyName);
             Console.WriteLine("Ammount:       {0}", this.Ammount);
             Console.WriteLine();
-        }
-
+        }       
 
         public override string ToString()
         {
@@ -77,7 +126,7 @@ namespace Project1
                     //string ValueOfCurrency = StringEnum.GetStringValue(currency.EUR);
 
                     string current_currency = str.ReadLine();
-                    CurrencyList.Add(new Currency(int.Parse(current_currency.Split(new char[] { ' ' })[0]),
+                    CurrencyList.Add(new Currency(double.Parse(current_currency.Split(new char[] { ' ' })[0]),
 
                        (currency)Enum.Parse(typeof(currency), current_currency.Split(new char[] { ' ' })[1])));
 
