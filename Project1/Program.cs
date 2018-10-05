@@ -18,6 +18,10 @@ namespace Project1
 
             List<Currency> CurrencyList = new List<Currency>();
 
+            Console.WriteLine("Converting USD into UAH");
+            Cur1.ConvertTo(currency.UAH);
+            Cur1.Print();
+
             Cur1.Read("currencies.txt", CurrencyList);                   
 
             foreach (var c in CurrencyList)
@@ -29,8 +33,6 @@ namespace Project1
             Console.WriteLine("\nConverting to dictionary.");
             Dictionary<double, currency> CurrencyDictionary = Cur1.ConvertToDictionary(CurrencyList);
 
-
-
             //запис в файл
             //string mydocpath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
 
@@ -39,6 +41,8 @@ namespace Project1
             //    foreach (var dict in CurrencyDictionary)
             //        outputFile.WriteLine(dict);
             //}
+
+
 
 
             Console.ReadKey();
