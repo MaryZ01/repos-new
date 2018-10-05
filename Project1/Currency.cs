@@ -33,7 +33,6 @@ namespace Project1
         }
 
     }
-
     //Добавляємо атрибут "StringValue" в enum
     public enum currency
     {
@@ -46,7 +45,6 @@ namespace Project1
         [StringValue("JPY")]
         JPY = 4
     }
-
     //клас з допомогою якого ми зможемо отримувати що потрібно
     public static class StringEnum
     {
@@ -55,17 +53,9 @@ namespace Project1
             string output = null;
             Type type = value.GetType();
 
-            //Check first in our cached results...
-
-            //Look for our 'StringValueAttribute' 
-
-            //in the field custom attributes
-
-
             FieldInfo fi = type.GetField(value.ToString());
-            StringValue[] attrs =
-               fi.GetCustomAttributes(typeof(StringValue),
-                                       false) as StringValue[];
+            StringValue[] attrs = fi.GetCustomAttributes(typeof(StringValue), 
+                false) as StringValue[];
             if (attrs.Length > 0)
             {
                 output = attrs[0].Value;
@@ -76,7 +66,7 @@ namespace Project1
     }
 
     /// <summary>  
-    ///  Клас описує сутність Currency що представляє собою 
+    ///  Клас описує сутність Currency
     /// </summary> 
     public class Currency : IRead
     {
@@ -145,15 +135,28 @@ namespace Project1
             
         }
 
-        //public void ConvertToDictionary()
+        //public void ChooseUAH(List<Currency> cur_list)
         //{
-        //    List<Currency> CurrencyList = new List<Currency>();
-        //    Dictionary<string, int> dict = new Dictionary<string, int>();
-
-        //    for (int i = 0; i < CurrencyList.Count; i++)
+        //    List<Currency> UAH_cur_list = new List<Currency>();
+        //    foreach (var cur in cur_list)
         //    {
-        //        dict.Add(CurrencyList[i].CurrencyName, CurrencyList[i].Ammount);
+        //        if (cur.CurrencyName == currency.UAH)
+        //            Console.WriteLine(cur.ToString());
         //    }
+
         //}
+
+        public Dictionary<double, currency> ConvertToDictionary(List<Currency> cur_lst)
+        {           
+            Dictionary<double, currency> dict = new Dictionary<double, currency>();
+
+            for (int i = 0; i < cur_lst.Count; i++)
+            {
+                dict.Add(cur_lst[i].Ammount, cur_lst[i].CurrencyName);
+            }
+
+            Console.WriteLine("\nConverting completed");
+            return dict;
+        }
     }
 }
