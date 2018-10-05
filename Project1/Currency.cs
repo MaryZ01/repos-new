@@ -69,7 +69,7 @@ namespace Project1
     /// <summary>  
     ///  Клас описує сутність Currency
     /// </summary> 
-    public class Currency : IRead, IEnumerable<int>
+    public class Currency : IRead, IEnumerable<Currency>
     {
         ///<value am = "Ammount">Сума</value>
         ///<value cn = "CurrencyName">Назва валюти</value>
