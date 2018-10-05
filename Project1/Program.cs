@@ -29,17 +29,19 @@ namespace Project1
             Console.WriteLine("\nConverting to dictionary.");
             Dictionary<double, currency> CurrencyDictionary = Cur1.ConvertToDictionary(CurrencyList);
 
+
+
             //запис в файл
-            string mydocpath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            //string mydocpath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
 
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(mydocpath, "WRITE_DICTIONARY.txt")))
-            {
-                foreach (var dict in CurrencyDictionary)
-                    outputFile.WriteLine(dict);
-            }
+            //using (StreamWriter outputFile = new StreamWriter(Path.Combine(mydocpath, "WRITE_DICTIONARY.txt")))
+            //{
+            //    foreach (var dict in CurrencyDictionary)
+            //        outputFile.WriteLine(dict);
+            //}
 
 
-                Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }

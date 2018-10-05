@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 using System.IO;
 using System.Reflection;
 
@@ -68,7 +69,7 @@ namespace Project1
     /// <summary>  
     ///  Клас описує сутність Currency
     /// </summary> 
-    public class Currency : IRead
+    public class Currency : IRead, IEnumerable<int>
     {
         ///<value am = "Ammount">Сума</value>
         ///<value cn = "CurrencyName">Назва валюти</value>
@@ -157,6 +158,20 @@ namespace Project1
 
             Console.WriteLine("\nConverting completed");
             return dict;
+        }
+
+        public IEnumerator<Currency> GetEnumerator()
+        {
+            Currency Cur = new Currency();
+            for (int i = 0; i < 10; i++)
+            {
+                yield return Cur;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
