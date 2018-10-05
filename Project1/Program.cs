@@ -23,9 +23,9 @@ namespace Project1
             foreach (var c in CurrencyList)
                 c.Print();
 
-            //Console.WriteLine("Write only UAH currencies: ");
-            //Cur1.ChooseUAH(CurrencyList);
-            
+            Console.WriteLine("Write only UAH currencies: ");
+            Cur1.ChooseUAH(CurrencyList);
+
             Console.WriteLine("\nConverting to dictionary.");
             Dictionary<double, currency> CurrencyDictionary = Cur1.ConvertToDictionary(CurrencyList);
 
